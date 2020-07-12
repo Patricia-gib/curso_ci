@@ -1,0 +1,17 @@
+<?php namespace App\Controllers;
+
+class Persona_controller extends BaseController
+{
+	public function index()
+	{
+		echo 'Hola desde Hola_controller.php';
+	}
+
+	public function datosAction($nombre,$sueldo, $liquidoP)
+	{
+		$data ['nombre'] = $nombre;
+		$data ['sueldo'] = $sueldo;
+		$data ['liquidop'] = $liquidoP;
+		return view('persona/datos_view', $data);
+	}
+}
