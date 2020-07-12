@@ -31,26 +31,30 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-// Ruta Hola Mundo
+
+// Ruta hola mundo
 $routes->get('/hola/ruta', function(){
 	echo 'Hola desde Routes.php';
 });
 
-$routes->get('/hola/ruta', function(){
-	echo 'Hola desde Routes.php con add ()';
+$routes->add('/hola/add', function(){
+	echo 'Hola desde Routes.php con add()';
 });
+
 // Rutas y controladores
-$routes->get('hola/controlador', 'Hola_controller::index');
+$routes->get('/hola/controlador', 'Hola_controller::index');
+
 // Paso de parametros
-$routes->get('hola/parametros/(:any)/(:num)','Hola_controller::parametrosAction/$1, $2');
-// Rutas y controladores
-$routes->get('hola/vista', 'Hola_controller::vistaAction/$1, $2');
+$routes->get('/hola/parametros/(:any)/(:num)', 'Hola_controller::parametrosAction/$1/$2');
 
-// Datos Personales
-$routes->get('/persona/datos/(:any)/(:num)', 'persona_controller::datosAction/$1, $2');
+// Renderizando una vista
+$routes->get('/hola/vista', 'Hola_controller::vistaAction');
 
+// Enviando datos controlador - vista
+$routes->get('/persona/datos/(:any)/(:num)', 'PersonaController::datosAction/$1/$2');
 
-$routes->get('/persona/datos/(:any)/(any)/(:num)', 'Persona_controller::datosAction/$1, $2, $3');
+// Envio de colecciones controlador - vista
+$routes->get('/persona/listar', 'PersonaController::listarAction');
 
 /**
  * --------------------------------------------------------------------
